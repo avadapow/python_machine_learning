@@ -27,3 +27,17 @@
 # 2) Then assign the value 0 to observations where the passenger is greater than or equal to 18 years in the new Child column.
 # 3) Compare the normalized survival rates for those who are <18 and those who are older. Use code similar to what you had in 
 #the previous exercise.
+
+# Create the column Child and assign to 'NaN'
+train["Child"] = float('NaN')
+
+# Assign 1 to passengers under 18, 0 to those 18 or older. Print the new column.
+train["Child"][train["Age"] < 18] = 1
+train["Child"][train["Age"] >= 18] = 0
+print(train["Child"])
+
+# Print normalized Survival Rates for passengers under 18
+print(train["Survived"][train["Child"] == 1].value_counts(normalize = True))
+
+# Print normalized Survival Rates for passengers 18 or older
+print(train["Survived"][train["Child"] == 0].value_counts(normalize = True))
